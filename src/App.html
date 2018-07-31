@@ -6,7 +6,7 @@
 
 <h1>Discover a new Place</h1>
 <Questions questions={questionsToShow}/>
-<Results pois={$pois} show={showResults} />
+<Results items={matchedItems} show={showResults} />
 
 <script>
   import Questions from './components/Questions.html';
@@ -14,10 +14,25 @@
 
   export default {
     computed: {
-      showResults: ({ $answered }) => $answered.length == 3,
-      questionsToShow: ({ $questions, $answered }) => {
-        return $questions.slice(0, $answered.length + 1)
+      showResults: ({ $questions, $answers }) => Object.keys($answers).length == $questions.length,
+      questionsToShow: ({ $questions, $answers }) => {
+        return $questions.slice(0, Object.keys($answers).length + 1)
+      },
+      matchedItems: ({ $pois, $questions, $answers }) => {
+        if (Object.keys($answers).length !== $questions.length) {
+          return []
+        }
+        return $pois
+          .filter(({ city }) => city.toLowerCase() === $answers.city.toLowerCase())
+          .filter(({ vibe }) => vibe.toLowerCase() === $answers.vibe.toLowerCase())
+          .filter(({ budget }) => budget.toLowerCase() === $answers.budget.toLowerCase())
+          .filter((poi) => poi["hobbies/interests"].toLowerCase() === $answers["hobbies/interests"].toLowerCase())
       }
+    },
+    data() {
+      return {
+        answer: 'Los Angeles'
+      };
     },
     components: { Questions, Results }
   };

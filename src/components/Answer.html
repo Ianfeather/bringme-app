@@ -1,4 +1,4 @@
-<button class="answer" on:click="$set({ answered: $answered + 1 })">
+<button class="answer" on:click="$set({ answers: { ...$answers, [key]: this.innerText }})">
   <slot></slot>
 </button>
 

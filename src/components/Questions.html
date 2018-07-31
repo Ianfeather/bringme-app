@@ -3,9 +3,7 @@
     <h2>{question.text}</h2>
     <div class="answers">
       {#each question.answers as answer}
-        <Answer>
-          <h3>{answer}</h3>
-        </Answer>
+        <Answer key={question.key}>{answer}</Answer>
       {/each}
     </div>
   </Question>

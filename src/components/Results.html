@@ -1,8 +1,8 @@
 {#if show}
-  <h1>You got Los Angeles!!!!</h1>
+  <h1>Los Angeles ({items.length})</h1>
   <div class="results">
-    {#each pois as poi}
-      <Poi poi={poi} />
+    {#each items as item}
+      <Poi poi={item} />
     {/each}
   </div>
 {/if}

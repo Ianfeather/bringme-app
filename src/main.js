@@ -11,7 +11,7 @@ fetch(url)
       const store = new Store({
         pois,
         questions,
-        answered: []
+        answers: []
       });
 
       let app = new App({
