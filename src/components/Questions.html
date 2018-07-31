@@ -1,13 +1,21 @@
 {#each questions as question}
   <Question>
     <h2>{question.text}</h2>
-    {#each question.answers as answer}
-      <Answer>
-        <h3>{answer}</h3>
-      </Answer>
-    {/each}
+    <div class="answers">
+      {#each question.answers as answer}
+        <Answer>
+          <h3>{answer}</h3>
+        </Answer>
+      {/each}
+    </div>
   </Question>
 {/each}
+
+<style>
+  .answers {
+    display: flex;
+  }
+</style>
 
 <script>
   import Question from './Question.html';

@@ -1,6 +1,26 @@
 {#if show}
   <h1>You got Los Angeles!!!!</h1>
-  {#each pois as poi}
-    <h2>{poi.name}</h2>
-  {/each}
+  <div class="results">
+    {#each pois as poi}
+      <Poi poi={poi} />
+    {/each}
+  </div>
 {/if}
+
+<style>
+  .results {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+</style>
+
+<script>
+  import Poi from './Poi.html';
+
+  export default {
+    components: { Poi }
+  };
+</script>
+
+
