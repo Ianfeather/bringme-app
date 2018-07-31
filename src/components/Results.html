@@ -1,4 +1,6 @@
-
-{#each pois as poi}
-	<h1>{poi.name}</h1>
-{/each}
+{#if show}
+  <h1>You got Los Angeles!!!!</h1>
+  {#each pois as poi}
+    <h2>{poi.name}</h2>
+  {/each}
+{/if}

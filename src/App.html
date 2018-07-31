@@ -5,14 +5,20 @@
 </style>
 
 <h1>Discover a new Place</h1>
-<Questions questions={questions}/>
-<Results pois={pois} />
+<Questions questions={questionsToShow}/>
+<Results pois={$pois} show={showResults} />
 
 <script>
 	import Questions from './components/Questions.html';
 	import Results from './components/Results.html';
 
 	export default {
+		computed: {
+			showResults: ({ $answered }) => $answered.length == 3,
+			questionsToShow: ({ $questions, $answered }) => {
+				return $questions.slice(0, $answered.length + 1)
+			}
+		},
 		components: { Questions, Results }
 	};
 </script>
