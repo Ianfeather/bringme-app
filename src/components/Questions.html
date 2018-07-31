@@ -1,20 +1,20 @@
 {#each questions as question}
-	<Question>
-		<h2>{question.text}</h2>
-		{#each question.answers as answer}
-			<Answer>
-				<h3>{answer}</h3>
-			</Answer>
-		{/each}
-	</Question>
+  <Question>
+    <h2>{question.text}</h2>
+    {#each question.answers as answer}
+      <Answer>
+        <h3>{answer}</h3>
+      </Answer>
+    {/each}
+  </Question>
 {/each}
 
 <script>
-	import Question from './Question.html';
-	import Answer from './Answer.html';
+  import Question from './Question.html';
+  import Answer from './Answer.html';
 
-	export default {
-		components: { Question, Answer }
-	};
+  export default {
+    components: { Question, Answer }
+  };
 </script>
 

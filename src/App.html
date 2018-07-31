@@ -1,7 +1,7 @@
 <style>
-	h1 {
-		color: purple;
-	}
+  h1 {
+    color: purple;
+  }
 </style>
 
 <h1>Discover a new Place</h1>
@@ -9,16 +9,16 @@
 <Results pois={$pois} show={showResults} />
 
 <script>
-	import Questions from './components/Questions.html';
-	import Results from './components/Results.html';
+  import Questions from './components/Questions.html';
+  import Results from './components/Results.html';
 
-	export default {
-		computed: {
-			showResults: ({ $answered }) => $answered.length == 3,
-			questionsToShow: ({ $questions, $answered }) => {
-				return $questions.slice(0, $answered.length + 1)
-			}
-		},
-		components: { Questions, Results }
-	};
+  export default {
+    computed: {
+      showResults: ({ $answered }) => $answered.length == 3,
+      questionsToShow: ({ $questions, $answered }) => {
+        return $questions.slice(0, $answered.length + 1)
+      }
+    },
+    components: { Questions, Results }
+  };
 </script>
