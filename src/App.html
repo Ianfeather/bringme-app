@@ -1,10 +1,18 @@
-{#each pois as poi}
-	<h1>{poi.name}</h1>
-{/each}
-
-
 <style>
 	h1 {
 		color: purple;
 	}
 </style>
+
+<h1>Discover a new Place</h1>
+<Questions questions={questions}/>
+<Results pois={pois} />
+
+<script>
+	import Questions from './components/Questions.html';
+	import Results from './components/Results.html';
+
+	export default {
+		components: { Questions, Results }
+	};
+</script>
