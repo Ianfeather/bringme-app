@@ -6,6 +6,7 @@
       <div class='tab-buttons'>
         <button ref:tabList on:click="set({ active: 'list' })" class="{active == 'list' ? 'active' : '' }">List</button>
         <button ref:tabMap on:click="set({ active: 'map' })" class="{active == 'map' ? 'active' : '' }">Map</button>
+        <button ref:tabMap on:click="set({ active: 'realEarth' })" class="{active == 'realEarth' ? 'active' : '' }">Real Earth</button>
       </div>
     </div>
     <div class="tab-content">
@@ -19,6 +20,10 @@
 
       {#if active == 'map'}
         <Map items={items} />
+      {/if}
+
+      {#if active == 'realEarth'}
+        <RealEarth items={items} />
       {/if}
     </div>
   </div>
@@ -61,9 +66,10 @@
 <script>
   import Poi from './Poi.html';
   import Map from './Map.html';
+  import RealEarth from './RealEarth.html';
 
   export default {
-    components: { Poi, Map },
+    components: { Poi, Map, RealEarth },
     data() {
       return {
         active: 'list'
