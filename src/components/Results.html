@@ -1,11 +1,27 @@
 {#if show}
-  <h1>Los Angeles ({items.length})</h1>
-  <div class="results">
-    {#each items as item}
-      <Poi poi={item} />
-    {/each}
+  <div class='tabs'>
+    <div class='tab-headers'>
+      <button ref:tabList on:click="set({ showList: true, showMap: false})" class="active">List</button>
+      <button ref:tabMap on:click="set({ showList: false, showMap: true})" class="active">Map</button>
+    </div>
+    <div class="tab-content">
+      {#if showList}
+        <h1>Los Angeles ({items.length})</h1>
+        <div class="results">
+          {#each items as item}
+            <Poi poi={item} />
+          {/each}
+        </div>
+      {/if}
+
+      {#if showMap}
+        <Map items={items} />
+      {/if}
+    </div>
   </div>
 {/if}
+
+
 
 <style>
   .results {
@@ -13,13 +29,26 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
   }
+  .tabs, .tab-content {
+    height: 100%;
+  }
 </style>
 
 <script>
   import Poi from './Poi.html';
+  import Map from './Map.html';
 
   export default {
-    components: { Poi }
+    components: { Poi, Map },
+    onstate(opts) {
+      console.log(opts)
+    },
+    data() {
+      return {
+        showList: true,
+        showMap: false
+      }
+    }
   };
 </script>
 

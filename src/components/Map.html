@@ -1,0 +1,81 @@
+<div ref:map class="map"></div>
+
+<style>
+  .map {
+    height: 100%;
+  }
+</style>
+
+<script>
+  import { styles } from '../data/map-styles.js';
+
+  const icons = {
+    food: 'http://icons.iconarchive.com/icons/icons8/ios7/24/Food-Cutlery-icon.png',
+    culture: 'http://icons.iconarchive.com/icons/icons8/ios7/24/Travel-Museum-icon.png',
+    outdoors: 'http://icons.iconarchive.com/icons/icons8/windows-8/24/City-Students-icon.png'
+  };
+  const markers = ['red', 'orange', 'purple', 'red', 'blue', 'yellow', 'pink', 'green'];
+
+  function formatLatLong(latlong) {
+    const split = latlong.split(',');
+    return {lat: parseFloat(split[0]), lng: parseFloat(split[1])};
+  }
+
+  function averagePosition(places) {
+    let lat = 0;
+    let lng = 0;
+    places.forEach(place => {
+      if (place.latlong){
+        const latlong = formatLatLong(place.latlong);
+        lat += latlong.lat;
+        lng += latlong.lng;
+      }
+    });
+    return {lat: lat/places.length, lng: lng/places.length}
+  }
+
+  function createMap(places, element) {
+    let map = new google.maps.Map(element, {
+      zoom: 10,
+      center: formatLatLong(places[0].latlong),
+      styles
+    });
+
+    places.forEach(place => {
+      if (place.latlong){
+        const marker = new google.maps.Marker({
+          position: formatLatLong(place.latlong),
+          map: map,
+          title: place.name,
+          icon: icons[place["hobbies/interests"]]
+        });
+
+        let infowindow;
+        if (place.video_url){
+          infowindow = new google.maps.InfoWindow({
+            content: '<center><h1>'+place.name+', '+place.city+'</h1><h2>'+place.title+'</h2><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fbuzzfeedbringme%2Fvideos%2F'+place.video_url.substring(48,64)+'%2F&show_text=0&width=476" width="476" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe></center>'
+          });
+        } else if (place.bf_url) {
+          infowindow = new google.maps.InfoWindow({
+            content: '<center><h1>'+place.name+', '+place.city+'</h1><a href="'+place.bf_url+'" target="_blank"><img src="'+place.thumbnail_url+'"><h2>'+place.title+'</h2></a></center>'
+          });
+        }
+        else {
+          infowindow = new google.maps.InfoWindow({
+            content: '<center><h1>'+place.name+', '+place.city+'</h1><h2>'+place.title+'</h2></center>'
+          });
+        }
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    });
+  }
+
+  export default {
+    oncreate () {
+      createMap(this.options.data.items, this.refs.map);
+    }
+  }
+
+</script>
