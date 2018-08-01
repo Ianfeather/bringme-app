@@ -7,6 +7,7 @@
         <button ref:tabList on:click="set({ active: 'list' })" class="{active == 'list' ? 'active' : '' }">List</button>
         <button ref:tabMap on:click="set({ active: 'map' })" class="{active == 'map' ? 'active' : '' }">Map</button>
         <button ref:tabMap on:click="set({ active: 'realEarth' })" class="{active == 'realEarth' ? 'active' : '' }">Real Earth</button>
+        <button ref:tabMap on:click="set({ active: 'fakeEarth' })" class="{active == 'fakeEarth' ? 'active' : '' }">Fake Earth</button>
       </div>
     </div>
     <div class="tab-content">
@@ -24,6 +25,10 @@
 
       {#if active == 'realEarth'}
         <RealEarth items={items} />
+      {/if}
+
+      {#if active == 'fakeEarth'}
+        <Globe items={items} />
       {/if}
     </div>
   </div>
@@ -67,9 +72,10 @@
   import Poi from './Poi.html';
   import Map from './Map.html';
   import RealEarth from './RealEarth.html';
+  import Globe from './Globe.html';
 
   export default {
-    components: { Poi, Map, RealEarth },
+    components: { Poi, Map, RealEarth, Globe },
     data() {
       return {
         active: 'list'

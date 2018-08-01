@@ -1,0 +1,85 @@
+<canvas ref:globe class="globe" width="800" height="500"></canvas>
+
+<style>
+  .globe {
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<script>
+  import * as THREE from 'three';
+
+  class Globe {
+    constructor(elem) {
+      this.scene = new THREE.Scene();
+
+      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+      this.camera.position.z = 3;
+      this.camera.position.y = 1;
+
+      this.renderer = new THREE.WebGLRenderer({ canvas: elem })
+      this.renderer.setClearColor (0xfcd007, 1);
+
+      let ambientLight = new THREE.AmbientLight(0x888888);
+      this.scene.add(ambientLight);
+
+      let light = new THREE.DirectionalLight(0xcccccc, 1)
+      this.scene.add(light);
+
+      this.sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(1, 32, 32),
+        new THREE.MeshPhongMaterial({
+          map: new THREE.TextureLoader().load('img/earthmap1k.jpg'),
+          bumpMap: new THREE.TextureLoader().load('img/earthbump1k.jpg'),
+          bumpScale: 0.05,
+          specularMap: new THREE.TextureLoader().load('img/earthspec1k.jpg'),
+          specular: new THREE.Color('grey'),
+        })
+      );
+      this.scene.add(this.sphere);
+
+      const markers = [[34.3205484, -118.4822827], [40.7128, -74.0060], [51.5074, 0.1278]];
+
+      markers.forEach(marker => {
+        let pos = this.calcPosFromLatLon(marker[0], marker[1]);
+        let spriteMap = new THREE.TextureLoader().load('img/pin.png');
+        let spriteMaterial = new THREE.SpriteMaterial({ map: spriteMap, color: 0xffffff });
+        this.sprite = new THREE.Sprite(spriteMaterial);
+        this.sprite.position.set(pos[0], pos[1], pos[2]);
+        this.sprite.scale.set(0.15, 0.15, 0.15);
+        this.sphere.add(this.sprite);
+      });
+
+      this.animate();
+    }
+
+    calcPosFromLatLon(lat, lon){
+        let radius = 1;
+        let phi   = (90-lat)*(Math.PI/180)
+        let theta = (lon+180)*(Math.PI/180)
+        let x = -((radius) * Math.sin(phi)*Math.cos(theta))
+        let z = ((radius) * Math.sin(phi)*Math.sin(theta))
+        let y = ((radius) * Math.cos(phi))
+        return [x,y+0.01,z+0.05]
+    }
+
+    animate() {
+      requestAnimationFrame(() => this.animate());
+      let yaw = .01
+      let x = this.camera.position.x,
+          y = this.camera.position.y,
+          z = this.camera.position.z;
+      this.camera.position.x = x * Math.cos(yaw) - z * Math.sin(yaw);
+      this.camera.position.z = z * Math.cos(yaw) + x * Math.sin(yaw);
+      this.camera.lookAt(this.scene.position);
+      this.renderer.render(this.scene, this.camera);
+    }
+  }
+
+  export default {
+    oncreate () {
+      this.globe = new Globe(this.refs.globe);
+    }
+  }
+</script>
