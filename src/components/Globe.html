@@ -2,7 +2,7 @@
 
 <style>
   .globe {
-    height: 100%;
+    height: 600px;
     width: 100%;
   }
 </style>
@@ -11,10 +11,10 @@
   import * as THREE from 'three';
 
   class Globe {
-    constructor(elem) {
+    constructor(places, elem) {
       this.scene = new THREE.Scene();
 
-      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/600, 0.1, 1000);
       this.camera.position.z = 3;
       this.camera.position.y = 1;
 
@@ -39,14 +39,24 @@
       );
       this.scene.add(this.sphere);
 
-      const markers = [[34.3205484, -118.4822827], [40.7128, -74.0060], [51.5074, 0.1278]];
 
+      // uncomment this for real markers
+      // places.forEach(place => {
+      //   let [lat, lon] = place.latlong.split(',')
+      //                         .map(el => parseFloat(el.trim()));
+
+
+      // comment this out for fake markers
+      const markers = [[34.3205484, -118.4822827], [40.7128, -74.0060], [51.5074, 0.1278]];
       markers.forEach(marker => {
-        let pos = this.calcPosFromLatLon(marker[0], marker[1]);
+        let [lat, lon] = marker;
+
+
+        let [x, y, z] = this.calcPosFromLatLon(lat, lon);
         let spriteMap = new THREE.TextureLoader().load('img/pin.png');
         let spriteMaterial = new THREE.SpriteMaterial({ map: spriteMap, color: 0xffffff });
         this.sprite = new THREE.Sprite(spriteMaterial);
-        this.sprite.position.set(pos[0], pos[1], pos[2]);
+        this.sprite.position.set(x, y+0.075, z);
         this.sprite.scale.set(0.15, 0.15, 0.15);
         this.sphere.add(this.sprite);
       });
@@ -61,7 +71,7 @@
         let x = -((radius) * Math.sin(phi)*Math.cos(theta))
         let z = ((radius) * Math.sin(phi)*Math.sin(theta))
         let y = ((radius) * Math.cos(phi))
-        return [x,y+0.01,z+0.05]
+        return [x, y, z]
     }
 
     animate() {
@@ -79,7 +89,7 @@
 
   export default {
     oncreate () {
-      this.globe = new Globe(this.refs.globe);
+      this.globe = new Globe(this.options.data.items, this.refs.globe);
     }
   }
 </script>
