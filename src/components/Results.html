@@ -1,12 +1,15 @@
 {#if show}
   <div class='tabs'>
+
     <div class='tab-headers'>
-      <button ref:tabList on:click="set({ showList: true, showMap: false})" class="active">List</button>
-      <button ref:tabMap on:click="set({ showList: false, showMap: true})" class="active">Map</button>
+      <h1>Los Angeles ({items.length})</h1>
+      <div class='tab-buttons'>
+        <button ref:tabList on:click="set({ active: 'list' })" class="{active == 'list' ? 'active' : '' }">List</button>
+        <button ref:tabMap on:click="set({ active: 'map' })" class="{active == 'map' ? 'active' : '' }">Map</button>
+      </div>
     </div>
     <div class="tab-content">
-      {#if showList}
-        <h1>Los Angeles ({items.length})</h1>
+      {#if active == 'list'}
         <div class="results">
           {#each items as item}
             <Poi poi={item} />
@@ -14,13 +17,12 @@
         </div>
       {/if}
 
-      {#if showMap}
+      {#if active == 'map'}
         <Map items={items} />
       {/if}
     </div>
   </div>
 {/if}
-
 
 
 <style>
@@ -29,8 +31,30 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
   }
+  .tabs {
+    padding: 10px;
+  }
   .tabs, .tab-content {
     height: 100%;
+  }
+  .tab-headers {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .tab-buttons button {
+    margin-right: 5px;
+    padding: 1em;
+    flex: 1;
+    border: 1px solid #91e1c8;
+    color: #282828;
+    border-radius: 4px;
+    cursor: pointer;
+    background: white;
+  }
+  .tab-buttons button.active {
+    background: #91e1c8;
+    cursor: default;
   }
 </style>
 
@@ -40,16 +64,10 @@
 
   export default {
     components: { Poi, Map },
-    onstate(opts) {
-      console.log(opts)
-    },
     data() {
       return {
-        showList: true,
-        showMap: false
+        active: 'list'
       }
     }
   };
 </script>
-
-
