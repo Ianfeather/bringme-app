@@ -1,6 +1,8 @@
 <div ref:container class="real-space">
   <img ref:img src="img/3d-real.jpg" class="real-earth" alt="The real earth, don't believe those round earth fools" />
-  <span ref:marker class="marker"></span>
+  <img ref:marker src="img/pin.png" class="marker" alt="pin" />
+  <img ref:marker2 src="img/pin.png" class="marker marker-two" alt="pin" />
+  <img ref:marker3 src="img/pin.png" class="marker marker-three" alt="pin" />
 </div>
 
 
@@ -16,11 +18,16 @@
     height: 100%;
   }
   .marker {
-    width: 10px;
-    height: 10px;
-    background: red;
+    width: 50px;
+    height: 50px;
     position: absolute;
     opacity: 0;
+  }
+  .marker-two {
+    margin-left: 5px;
+  }
+  .marker-three {
+    margin-left: -5px;
   }
 </style>
 
@@ -28,30 +35,25 @@
   function getMarkerPosition(container, img) {
     let imgCoords = img.getBoundingClientRect();
     let containerCoords = container.getBoundingClientRect();
-    console.log(containerCoords)
-    console.log(imgCoords)
-
     let imageOffset = imgCoords.left - containerCoords.left;
-    let markerLeft = (imgCoords.width * 0.52) + imageOffset;
-    let markerTop = (imgCoords.height * 0.39);
-
 
     return {
-      x: markerLeft,
-      y: markerTop
+      x: ((imgCoords.width * 0.52) + imageOffset) -25,
+      y: (imgCoords.height * 0.39) - 50
     }
   }
   export default {
     oncreate() {
       setTimeout(() => {
         console.log("Real earth has arrived");
-        let coords = getMarkerPosition(this.refs.container, this.refs.img);
+        ['marker', 'marker2', 'marker3'].forEach((marker, index) => {
+          let coords = getMarkerPosition(this.refs.container, this.refs.img);
 
-        this.refs.marker.style.left = coords.x + 'px';
-        this.refs.marker.style.top = coords.y + 'px';
-        this.refs.marker.style.opacity = 1;
+          this.refs[marker].style.left = coords.x + 'px';
+          this.refs[marker].style.top = coords.y + 'px';
+          this.refs[marker].style.opacity = 1;
+        });
       }, 100);
-
     }
   }
 
