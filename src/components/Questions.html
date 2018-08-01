@@ -3,7 +3,7 @@
     <h2>{question.text}</h2>
     <div class="answers">
       {#each question.answers as answer}
-        <Answer key={question.key}>{answer}</Answer>
+        <Answer key={question.key} value={answer}>{answer}</Answer>
       {/each}
     </div>
   </Question>
@@ -13,6 +13,9 @@
   .answers {
     display: flex;
   }
+  h2 {
+    font-weight: normal;
+  }
 </style>
 
 <script>
@@ -20,7 +23,8 @@
   import Answer from './Answer.html';
 
   export default {
-    components: { Question, Answer }
+    components: { Question, Answer },
+
   };
 </script>
 

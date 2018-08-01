@@ -1,11 +1,32 @@
-<button class="answer" on:click="$set({ answers: { ...$answers, [key]: this.innerText }})">
+<button class="answer {isSelected ? 'selected' : ''}" on:click="$set({ answers: { ...$answers, [key]: this.innerText }})">
   <slot></slot>
 </button>
+
+<script>
+  export default {
+    computed: {
+      isSelected: ({ $answers, key, value }) => $answers[key] == value
+    }
+  }
+
+</script>
 
 <style>
   .answer {
     margin-right: 1em;
     padding: 1em;
     flex: 1;
+    background: #91e1c8;
+    color: #282828;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
+  .answer:last-of-type {
+    margin-right: 0;
+  }
+  .selected {
+    background: #f27075;
+    color: white;
   }
 </style>

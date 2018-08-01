@@ -1,8 +1,14 @@
 <div class="card">
-  <img class="card-image" src={poi.thumbnail_url} alt="" />
+  <div class="card-image">
+    <img src={poi.thumbnail_url} alt="" />
+  </div>
   <div class="card-content">
     <h2>{poi.name}</h2>
     <p>{poi.title}</p>
+  </div>
+  <div class="card-footer">
+    <a href="/">Bring someone</a>
+    <a href="/">Add to Passport</a>
   </div>
 </div>
 
@@ -10,11 +16,40 @@
   .card {
     border-radius: 4px;
     box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
+    height: 380px;
+    display: flex;
+    flex-direction: column;
   }
   .card-image {
+    height: 209px;
+    overflow: hidden;
+  }
+  .card-image img {
     max-width: 100%;
   }
   .card-content {
-    padding: 1em;
+    padding: 10px;
+    flex: 1;
+  }
+  .card-footer {
+    padding: 10px
+  }
+  .card-footer a {
+    padding-right: 10px;
+    margin-right: 5px;
+    border-right: 1px solid #282828;
+    color: #f27075;
+    font-size: 14px;
+  }
+  .card-footer a:last-of-type {
+    border: none;
+  }
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: normal;
+  }
+  p {
+    font-size: 16px;
   }
 </style>
