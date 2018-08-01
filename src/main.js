@@ -21,7 +21,7 @@ fetch(url)
       store.set({ pois });
 
       let app = new App({
-        target: document.body,
+        target: document.querySelector('.main-content'),
         store
       });
 

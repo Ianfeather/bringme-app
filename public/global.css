@@ -63,3 +63,12 @@ button:focus {
 .header {
   border-bottom: 1px solid #91e1c8;
 }
+
+.logo {
+  width: 111px;
+}
+
+.main-content {
+  width: 1150px;
+  margin: 0 auto;
+}
