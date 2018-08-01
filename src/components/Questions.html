@@ -1,15 +1,22 @@
-{#each questions as question}
-  <Question>
-    <h2>{question.text}</h2>
-    <div class="answers">
-      {#each question.answers as answer}
-        <Answer key={question.key} value={answer}>{answer}</Answer>
-      {/each}
-    </div>
-  </Question>
-{/each}
+<div class='main-questions'>
+  {#each questions as question}
+    <Question>
+      <h2>{question.text}</h2>
+      <div class="answers">
+        {#each question.answers as answer}
+          <Answer key={question.key} value={answer}>{answer}</Answer>
+        {/each}
+      </div>
+    </Question>
+  {/each}
+</div>
 
 <style>
+  .main-questions {
+    width: 1150px;
+    margin: 0 auto;
+  }
+
   .answers {
     display: flex;
   }

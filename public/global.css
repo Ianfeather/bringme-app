@@ -69,6 +69,5 @@ button:focus {
 }
 
 .main-content {
-  width: 1150px;
-  margin: 0 auto;
+  height: 100%;
 }
