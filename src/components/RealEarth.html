@@ -14,7 +14,7 @@
     constructor(places, elem) {
       this.scene = new THREE.Scene();
 
-      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/600, 0.1, 1000);
+      this.camera = new THREE.PerspectiveCamera(45, 1150/600, 0.1, 1000);
       this.camera.position.z = 3.20;
       this.camera.position.y = 2;
       this.camera.lookAt(this.scene.position);
@@ -22,10 +22,10 @@
       this.renderer = new THREE.WebGLRenderer({ canvas: elem })
       this.renderer.setClearColor (0xf27075, 1);
 
-      let ambientLight = new THREE.AmbientLight(0x888888);
+      let ambientLight = new THREE.AmbientLight(0x444444);
       this.scene.add(ambientLight);
 
-      let light = new THREE.DirectionalLight(0xcccccc, 1)
+      let light = new THREE.DirectionalLight(0xaaaaaa, 1)
       this.scene.add(light);
 
       this.realEarth = new THREE.Mesh(
@@ -33,7 +33,7 @@
         new THREE.MeshPhongMaterial({
           map: new THREE.TextureLoader().load('img/real-earth.jpg'),
           bumpMap: new THREE.TextureLoader().load('img/real-earth.jpg'),
-          bumpScale: 0.05,
+          bumpScale: 0.08,
           specularMap: new THREE.TextureLoader().load('img/real-earth.jpg'),
           specular: new THREE.Color('grey'),
         })
