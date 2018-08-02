@@ -1,46 +1,43 @@
-{#if show}
-  <div class='tabs'>
-
-    <div class='tab-headers'>
-      <h1>Los Angeles <h4>Results ({items.length})</h4></h1>
-      <div class='tab-buttons'>
-        <button ref:tabList on:click="set({ active: 'list' })" class="{active == 'list' ? 'active' : '' }">
-          <img src="https://cdn0.iconfinder.com/data/icons/thin-gui-elements-1/24/thin-0208_grid_view-512.png">
-          </button>
-        <button ref:tabMap on:click="set({ active: 'map' })" class="{active == 'map' ? 'active' : '' }">
-          <img src="img/047-location.png">
-          </button>
-        <button ref:tabMap on:click="set({ active: 'fakeEarth' })" class="{active == 'fakeEarth' ? 'active' : '' }">
-          <img src="img/earth-globe.png">
-          </button>
-        <button ref:tabMap on:click="set({ active: 'realEarth' })" class="{active == 'realEarth' ? 'active' : '' }" id="realEarth">
-          <img src="img/flatworld-1.png">
-          </button>
-      </div>
-    </div>
-    <div class="tab-content">
-      {#if active == 'list'}
-        <div class="results">
-          {#each items as item}
-            <Poi poi={item} />
-          {/each}
-        </div>
-      {/if}
-
-      {#if active == 'map'}
-        <Map items={items} />
-      {/if}
-
-      {#if active == 'realEarth'}
-        <RealEarth items={items} />
-      {/if}
-
-      {#if active == 'fakeEarth'}
-        <Globe items={items} />
-      {/if}
+<div class='tabs'>
+  <div class='tab-headers'>
+    <h1>Los Angeles <h4>Results ({items.length})</h4></h1>
+    <div class='tab-buttons'>
+      <button ref:tabList on:click="set({ active: 'list' })" class="{active == 'list' ? 'active' : '' }">
+        <img src="https://cdn0.iconfinder.com/data/icons/thin-gui-elements-1/24/thin-0208_grid_view-512.png" alt="list view">
+        </button>
+      <button ref:tabMap on:click="set({ active: 'map' })" class="{active == 'map' ? 'active' : '' }" alt="map view">
+        <img src="img/047-location.png">
+        </button>
+      <button ref:tabMap on:click="set({ active: 'fakeEarth' })" class="{active == 'fakeEarth' ? 'active' : '' }" alt="fake earth view">
+        <img src="img/earth-globe.png">
+        </button>
+      <button ref:tabMap on:click="set({ active: 'realEarth' })" class="{active == 'realEarth' ? 'active' : '' }" id="realEarth" alt="real earth view">
+        <img src="img/flatworld-1.png">
+        </button>
     </div>
   </div>
-{/if}
+  <div class="tab-content">
+    {#if active == 'list'}
+      <div class="results">
+        {#each items as item}
+          <Poi poi={item} />
+        {/each}
+      </div>
+    {/if}
+
+    {#if active == 'map'}
+      <Map items={items} />
+    {/if}
+
+    {#if active == 'realEarth'}
+      <RealEarth items={items} />
+    {/if}
+
+    {#if active == 'fakeEarth'}
+      <Globe items={items} />
+    {/if}
+  </div>
+</div>
 
 <style>
   .results {

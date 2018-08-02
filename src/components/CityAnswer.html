@@ -6,7 +6,7 @@
 <script>
   export default {
     computed: {
-      src: ({ value }) => `/img/city_${value.replace(' ', '_').toLowerCase()}.png`,
+      src: ({ value }) => `img/city_${value.replace(' ', '_').toLowerCase()}.png`,
       isSelected: ({ $answers, key, value }) => $answers[key] == value
     }
   }
