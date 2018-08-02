@@ -4,7 +4,7 @@
       <h2>{city.text}</h2>
       <div class="answers">
         {#each city.answers as answer}
-          <Answer key={city.key} value={answer}>{answer}</Answer>
+          <CityAnswer key={city.key} value={answer}>{answer}</CityAnswer>
         {/each}
       </div>
     </Question>
@@ -27,10 +27,10 @@
 
 <script>
   import Question from './Question.html';
-  import Answer from './Answer.html';
+  import CityAnswer from './CityAnswer.html';
 
   export default {
-    components: { Question, Answer },
+    components: { Question, CityAnswer },
 
   };
 </script>

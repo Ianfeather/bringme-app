@@ -1,8 +1,9 @@
 .back.svelte-hjayap{margin-right:1em;padding:1em;flex:1;background:#91e1c8;color:#282828;border-radius:4px;cursor:pointer;border:none;margin:10px}.back-container.svelte-hjayap{width:1150px;margin:0 auto}
 .question.svelte-18cv6lm{padding:10px}
-.answer.svelte-1duk0bp{margin-right:1em;padding:1em;flex:1;background:#91e1c8;color:#282828;border-radius:4px;cursor:pointer;border:none}.answer.svelte-1duk0bp:last-of-type{margin-right:0}.selected.svelte-1duk0bp{background:#f27075;color:white}
+.city.svelte-1ftcqno{flex:1;margin-right:1em;background:#000;padding:0;height:488px;overflow:hidden;cursor:pointer}.city.svelte-1ftcqno img.svelte-1ftcqno{width:100%;opacity:0.6}.answer.svelte-1ftcqno:last-of-type{margin-right:0}.selected.svelte-1ftcqno img.svelte-1ftcqno{opacity:1}
 .main-cities.svelte-1622tlx{width:1150px;margin:0 auto}.answers.svelte-1622tlx{display:flex}h2.svelte-1622tlx{font-weight:normal}
 .forward.svelte-48nnn5{margin-right:1em;padding:1em 4em;font-weight:bold;flex:1;background:#f27075;color:#fff;border-radius:20px;cursor:pointer;border:none;margin:0 auto;display:block}.forward-container.svelte-48nnn5{width:1150px;margin:20px auto}
+.answer.svelte-1duk0bp{margin-right:1em;padding:1em;flex:1;background:#91e1c8;color:#282828;border-radius:4px;cursor:pointer;border:none}.answer.svelte-1duk0bp:last-of-type{margin-right:0}.selected.svelte-1duk0bp{background:#f27075;color:white}
 .main-questions.svelte-1eskbmh{width:1150px;margin:0 auto}.answers.svelte-1eskbmh{display:flex}h2.svelte-1eskbmh{font-weight:normal}
 .card.svelte-16v101q{border:1px solid #d8d8d8;height:380px;display:flex;flex-direction:column}.card-image.svelte-16v101q{height:160px;overflow:hidden}.card-image.svelte-16v101q img.svelte-16v101q{max-width:100%}.card-content.svelte-16v101q{padding:10px;flex:1}.card-footer.svelte-16v101q{padding:10px
   }.card-footer.svelte-16v101q a.svelte-16v101q{padding-right:10px;margin-right:5px;border-right:1px solid #282828;color:#f27075;font-size:14px}.card-footer.svelte-16v101q a.svelte-16v101q:last-of-type{border:none}h2.svelte-16v101q{margin:0;font-size:24px;font-weight:normal}p.svelte-16v101q{font-size:16px}
@@ -10,3 +11,4 @@
 .realEarth.svelte-l26e2e{height:600px;width:100%}
 .globe.svelte-ac72mx{height:600px;width:100%}
 .results.svelte-ng5bi{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;grid-gap:10px;width:1150px;margin:0 auto}.tabs.svelte-ng5bi{padding:10px}.tabs.svelte-ng5bi,.tab-content.svelte-ng5bi{height:100%}.tab-headers.svelte-ng5bi{display:flex;align-items:baseline;justify-content:space-between;width:1150px;margin:0 auto}.tab-buttons.svelte-ng5bi button.svelte-ng5bi{margin-right:5px;padding:1em;flex:1;border:1px solid #91e1c8;color:#282828;border-radius:4px;cursor:pointer;background:white;width:70px;height:70px;padding:10px}.tab-buttons.svelte-ng5bi button img.svelte-ng5bi{max-width:100%}.tab-buttons.svelte-ng5bi button.active.svelte-ng5bi{background:#91e1c8;cursor:default}#realEarth.svelte-ng5bi{cursor:url("/bringme-app/public/img/illuminati.cur"),auto}
+.hero.svelte-hum0qb{width:100%;margin-top:-80px;min-height:80px}.hero.svelte-hum0qb img.svelte-hum0qb{width:100%}

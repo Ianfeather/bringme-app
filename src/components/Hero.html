@@ -1,0 +1,23 @@
+<div class="hero">
+  <img src={src} alt="hero" />
+</div>
+
+<script>
+  export default {
+    computed: {
+      src: ({ $viewState }) => `/img/hero_${$viewState}.png`
+    }
+  }
+
+</script>
+
+<style>
+.hero {
+  width: 100%;
+  margin-top: -80px;
+  min-height: 80px;
+}
+.hero img {
+  width: 100%;
+}
+</style>

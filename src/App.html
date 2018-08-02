@@ -1,3 +1,5 @@
+<Hero />
+
 {#if $viewState == $viewStates.QUESTIONS}
   <Questions questions={questionsToShow} />
   <Forward />
@@ -18,6 +20,7 @@
   import Forward from './components/Forward.html';
   import Questions from './components/Questions.html';
   import Results from './components/Results.html';
+  import Hero from './components/Hero.html';
 
   export default {
     computed: {
@@ -38,6 +41,6 @@
           .filter((poi) => poi["hobbies/interests"].toLowerCase() === $answers["hobbies/interests"].toLowerCase());
       }
     },
-    components: { Cities, Questions, Results, Forward, Back }
+    components: { Cities, Questions, Results, Forward, Back, Hero }
   };
 </script>
