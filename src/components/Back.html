@@ -1,0 +1,23 @@
+<div class='back-container'>
+  <button class="back" on:click="$set({ viewState: $viewState - 1 })">
+    Back
+  </button>
+</div>
+
+<style>
+  .back {
+    margin-right: 1em;
+    padding: 1em;
+    flex: 1;
+    background: #91e1c8;
+    color: #282828;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    margin: 10px;
+  }
+  .back-container {
+    width: 1150px;
+    margin: 0 auto;
+  }
+</style>

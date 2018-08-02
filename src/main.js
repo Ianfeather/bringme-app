@@ -4,10 +4,18 @@ import { Store } from 'svelte/store.js';
 
 const url = 'https://gist.githubusercontent.com/ben-graves/5b8fe403b6a07239cb1dab2faacdf9a7/raw/30812a69dd0ab04cb6cc5e0386081885e99423ca/bringme.json';
 
+const viewStates = {
+    QUESTIONS: 0,
+    CITY_SELECT: 1,
+    RESULTS: 2
+}
+
 const store = new Store({
   pois: [],
   questions,
-  answers: []
+  answers: [],
+  viewStates: viewStates,
+  viewState: viewStates.QUESTIONS
 });
 
 window.ready = function ready() {

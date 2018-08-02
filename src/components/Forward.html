@@ -1,0 +1,25 @@
+<div class='forward-container'>
+  <button class="forward" on:click="$set({ viewState: $viewState + 1 })">
+    Continue
+  </button>
+</div>
+
+<style>
+  .forward {
+    margin-right: 1em;
+    padding: 1em 4em;
+    font-weight: bold;
+    flex: 1;
+    background: #f27075;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    margin: 0 auto;
+    display: block;
+  }
+  .forward-container {
+    width: 1150px;
+    margin: 20px auto;
+  }
+</style>

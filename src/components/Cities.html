@@ -1,10 +1,10 @@
-<div class='main-questions'>
-  {#each questions as question}
+<div class='main-cities'>
+  {#each cities as city}
     <Question>
-      <h2>{question.text}</h2>
+      <h2>{city.text}</h2>
       <div class="answers">
-        {#each question.answers as answer}
-          <Answer key={question.key} value={answer}>{answer}</Answer>
+        {#each city.answers as answer}
+          <Answer key={city.key} value={answer}>{answer}</Answer>
         {/each}
       </div>
     </Question>
@@ -12,7 +12,7 @@
 </div>
 
 <style>
-  .main-questions {
+  .main-cities {
     width: 1150px;
     margin: 0 auto;
   }
@@ -31,7 +31,7 @@
 
   export default {
     components: { Question, Answer },
-    computed: {},
+
   };
 </script>
 

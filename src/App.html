@@ -1,32 +1,46 @@
-<Questions questions={questionsToShow}/>
-<Results items={matchedItems} show={showResults} />
+{#if $viewState == $viewStates.QUESTIONS}
+  <Questions questions={questionsToShow} />
+  <Forward />
+{/if}
+{#if $viewState == $viewStates.CITY_SELECT}
+  <Back />
+  <Cities cities={citiesToShow} />
+  <Forward />
+{/if}
+{#if $viewState == $viewStates.RESULTS}
+  <Back />
+  <Results items={matchedItems} answers={answers} />
+{/if}
 
 <script>
+  import Back from './components/Back.html';
+  import Cities from './components/Cities.html';
+  import Forward from './components/Forward.html';
   import Questions from './components/Questions.html';
   import Results from './components/Results.html';
 
   export default {
     computed: {
-      showResults: ({ $questions, $answers }) => Object.keys($answers).length == $questions.length,
-      questionsToShow: ({ $questions, $answers }) => {
-        return $questions.slice(0, Object.keys($answers).length + 1)
+      questionsToShow: ({ $questions, $answers, $viewStates }) => {
+        let questions = $questions.slice(0, Object.keys($questions).length - 1);
+        return questions;
+      },
+      citiesToShow: ({ $questions, $answers, $viewStates }) => {
+        let cities = [$questions[$questions.length - 1]];
+        return cities;
       },
       matchedItems: ({ $pois, $questions, $answers }) => {
         if (Object.keys($answers).length !== $questions.length) {
           return []
         }
-        return $pois
+        let filtered = $pois
           .filter(({ city }) => city.toLowerCase() === $answers.city.toLowerCase())
           .filter(({ vibe }) => vibe.toLowerCase() === $answers.vibe.toLowerCase())
           .filter(({ budget }) => budget.toLowerCase() === $answers.budget.toLowerCase())
           .filter((poi) => poi["hobbies/interests"].toLowerCase() === $answers["hobbies/interests"].toLowerCase())
+        return filtered;
       }
     },
-    data() {
-      return {
-        answer: 'Los Angeles'
-      };
-    },
-    components: { Questions, Results }
+    components: { Cities, Questions, Results, Forward, Back }
   };
 </script>
