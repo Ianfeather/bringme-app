@@ -53,16 +53,16 @@
         let infowindow;
         if (place.video_url){
           infowindow = new google.maps.InfoWindow({
-            content: '<center><h1>'+place.name+', '+place.city+'</h1><h2>'+place.title+'</h2><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fbuzzfeedbringme%2Fvideos%2F'+place.video_url.substring(48,64)+'%2F&show_text=0&width=476" width="476" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe></center>'
+            content: '<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fbuzzfeedbringme%2Fvideos%2F'+place.video_url.substring(48,64)+'%2F&show_text=0&width=476" width="476" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe><h3>'+place.name+', '+place.city+'</h3><p>'+place.title+'</p>'
           });
         } else if (place.bf_url) {
           infowindow = new google.maps.InfoWindow({
-            content: '<center><h1>'+place.name+', '+place.city+'</h1><a href="'+place.bf_url+'" target="_blank"><img src="'+place.thumbnail_url+'"><h2>'+place.title+'</h2></a></center>'
+            content: '<a href="'+place.bf_url+'" target="_blank"><img src="'+place.thumbnail_url+'"><p>'+place.title+'</p></a><h3>'+place.name+', '+place.city+'</h3>'
           });
         }
         else {
           infowindow = new google.maps.InfoWindow({
-            content: '<center><h1>'+place.name+', '+place.city+'</h1><h2>'+place.title+'</h2></center>'
+            content: '<h3>'+place.name+', '+place.city+'</h3><p>'+place.title+'</p>'
           });
         }
         marker.addListener('click', function() {
