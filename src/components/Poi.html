@@ -3,7 +3,7 @@
     <img src={poi.thumbnail_url + '?output-format=auto&output-quality=60&fill=300:170'} alt="" />
   </div>
   <div class="card-content">
-    <h2>{poi.name}</h2>
+    <h3>{poi.name}</h3>
     <p>{poi.title}</p>
   </div>
   <div class="card-footer">
@@ -13,42 +13,41 @@
 </div>
 
 <style>
-  .card {
+ .card {
     border: 1px solid #d8d8d8;
     height: 380px;
     display: flex;
     flex-direction: column;
   }
-  .card-image {
-    height: 160px;
+  .card-image{
+    max-height: 209px;
     overflow: hidden;
   }
   .card-image img {
     max-width: 100%;
   }
   .card-content {
-    padding: 10px;
+    padding: 0px 15px 0px 15px;
     flex: 1;
   }
   .card-footer {
-    padding: 10px
+    padding: 0px 15px 15px 15px;
   }
   .card-footer a {
     padding-right: 10px;
     margin-right: 5px;
-    border-right: 1px solid #282828;
-    color: #f27075;
+    border-right: 1px solid #CBCBCB;
+    color: #F27075;
+    font-weight:600;
     font-size: 14px;
   }
   .card-footer a:last-of-type {
     border: none;
   }
-  h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: normal;
+  h3{
+    margin-top: 20px;
   }
   p {
-    font-size: 16px;
+    margin: 10px 0px 10px 0px;
   }
 </style>

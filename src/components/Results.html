@@ -1,54 +1,59 @@
-<div class='tabs'>
-  <div class='tab-headers'>
-      <h1>{$answers.city} ({items.length})</h1>
-    <div class='tab-buttons'>
-      <button ref:tabList on:click="set({ active: 'list' })" class="{active == 'list' ? 'active' : '' }">
-        <img src="https://cdn0.iconfinder.com/data/icons/thin-gui-elements-1/24/thin-0208_grid_view-512.png" alt="grid view">
-        </button>
-      <button ref:tabMap on:click="set({ active: 'map' })" class="{active == 'map' ? 'active' : '' }">
-        <img src="https://emojipedia-us.s3.amazonaws.com/thumbs/160/apple/48/world-map_1f5fa.png" alt="map view">
-        </button>
-      <button ref:tabMap on:click="set({ active: 'fakeEarth' })" class="{active == 'fakeEarth' ? 'active' : '' }">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png" alt="fake earth view">
-        </button>
-      <button ref:tabMap on:click="set({ active: 'realEarth' })" class="{active == 'realEarth' ? 'active' : '' }" id="realEarth">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flat_earth.png/220px-Flat_earth.png" alt="real earth view">
-        </button>
+{#if show}
+  <div class='tabs'>
+
+    <div class='tab-headers'>
+      <h1>Los Angeles <h4>Results ({items.length})</h4></h1>
+      <div class='tab-buttons'>
+        <button ref:tabList on:click="set({ active: 'list' })" class="{active == 'list' ? 'active' : '' }">
+          <img src="https://cdn0.iconfinder.com/data/icons/thin-gui-elements-1/24/thin-0208_grid_view-512.png">
+          </button>
+        <button ref:tabMap on:click="set({ active: 'map' })" class="{active == 'map' ? 'active' : '' }">
+          <img src="img/047-location.png">
+          </button>
+        <button ref:tabMap on:click="set({ active: 'fakeEarth' })" class="{active == 'fakeEarth' ? 'active' : '' }">
+          <img src="img/earth-globe.png">
+          </button>
+        <button ref:tabMap on:click="set({ active: 'realEarth' })" class="{active == 'realEarth' ? 'active' : '' }" id="realEarth">
+          <img src="img/flatworld-1.png">
+          </button>
+      </div>
+    </div>
+    <div class="tab-content">
+      {#if active == 'list'}
+        <div class="results">
+          {#each items as item}
+            <Poi poi={item} />
+          {/each}
+        </div>
+      {/if}
+
+      {#if active == 'map'}
+        <Map items={items} />
+      {/if}
+
+      {#if active == 'realEarth'}
+        <RealEarth items={items} />
+      {/if}
+
+      {#if active == 'fakeEarth'}
+        <Globe items={items} />
+      {/if}
     </div>
   </div>
-  <div class="tab-content">
-    {#if active == 'list'}
-      <div class="results">
-        {#each items as item}
-          <Poi poi={item} />
-        {/each}
-      </div>
-    {/if}
-
-    {#if active == 'map'}
-      <Map items={items} />
-    {/if}
-
-    {#if active == 'realEarth'}
-      <RealEarth items={items} />
-    {/if}
-
-    {#if active == 'fakeEarth'}
-      <Globe items={items} />
-    {/if}
-  </div>
-</div>
+{/if}
 
 <style>
   .results {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 20px;
     width: 1150px;
     margin: 0 auto;
   }
   .tabs {
     padding: 10px;
+    width: 1150px;
+    margin: 0 auto;
   }
   .tabs, .tab-content {
     height: 100%;
@@ -57,20 +62,20 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    width: 1150px;
-    margin: 0 auto;
+    margin: 100px 0px 50px;
   }
   .tab-buttons button {
-    margin-right: 5px;
+    margin-right: 0px;
     padding: 1em;
     flex: 1;
+    border:none;
     border: 1px solid #91e1c8;
-    color: #282828;
-    border-radius: 4px;
+    /*color: #282828;*/
+    border-radius: 10px;
     cursor: pointer;
     background: white;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     padding: 10px;
   }
   .tab-buttons button img {
@@ -83,6 +88,13 @@
   }
   #realEarth {
     cursor: url("/bringme-app/public/img/illuminati.cur"),auto;
+  }
+  h4 {
+    margin: 0px;
+    font-size: 24px;
+    font-family:'Proxima Nova';
+    text-transform: none;
+    line-height: 1em;
   }
 </style>
 
