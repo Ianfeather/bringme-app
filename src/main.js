@@ -7,7 +7,8 @@ const url = 'https://gist.githubusercontent.com/ben-graves/5b8fe403b6a07239cb1da
 const viewStates = {
     QUESTIONS: 0,
     CITY_SELECT: 1,
-    RESULTS: 2
+    RESULTS: 2,
+    PASSPORT: 3
 }
 
 const store = new Store({

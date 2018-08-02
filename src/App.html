@@ -22,23 +22,20 @@
   export default {
     computed: {
       questionsToShow: ({ $questions, $answers, $viewStates }) => {
-        let questions = $questions.slice(0, Object.keys($questions).length - 1);
-        return questions;
+        return $questions.slice(0, Object.keys($questions).length - 1);
       },
       citiesToShow: ({ $questions, $answers, $viewStates }) => {
-        let cities = [$questions[$questions.length - 1]];
-        return cities;
+        return [$questions[$questions.length - 1]];
       },
       matchedItems: ({ $pois, $questions, $answers }) => {
         if (Object.keys($answers).length !== $questions.length) {
-          return []
+          return [];
         }
-        let filtered = $pois
+        return $pois
           .filter(({ city }) => city.toLowerCase() === $answers.city.toLowerCase())
           .filter(({ vibe }) => vibe.toLowerCase() === $answers.vibe.toLowerCase())
           .filter(({ budget }) => budget.toLowerCase() === $answers.budget.toLowerCase())
-          .filter((poi) => poi["hobbies/interests"].toLowerCase() === $answers["hobbies/interests"].toLowerCase())
-        return filtered;
+          .filter((poi) => poi["hobbies/interests"].toLowerCase() === $answers["hobbies/interests"].toLowerCase());
       }
     },
     components: { Cities, Questions, Results, Forward, Back }
