@@ -6,7 +6,7 @@
 
     {#if $viewState == 1}
       <Back style="text"/>
-      <h1 class="upper">You Got —</h1>
+      <h1 class="upper">You Got <span class="normal">—</span></h1>
     {/if}
 
     {#if cityPage}
@@ -41,6 +41,9 @@
 </script>
 
 <style>
+.normal {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
 .hero {
   width: 100%;
   margin-top: -160px;
