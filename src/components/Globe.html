@@ -41,6 +41,13 @@
       );
       this.scene.add(this.sphere);
 
+      let jonahMap = new THREE.TextureLoader().load('img/jonah.png');
+      let jonahMat = new THREE.SpriteMaterial({ map: jonahMap, color: 0xffffff });
+      this.jonah = new THREE.Sprite(jonahMat);
+      this.jonah.position.x = -1.2;
+      this.jonah.position.y = 0.7;
+      this.jonah.scale.set(0.34, 0.5, 0.5);
+      this.scene.add(this.jonah);
 
       // uncomment this for real markers
       // places.forEach(place => {
@@ -78,13 +85,15 @@
 
     animate() {
       requestAnimationFrame(() => this.animate());
-      let yaw = .001
-      let x = this.camera.position.x,
-          y = this.camera.position.y,
-          z = this.camera.position.z;
-      this.camera.position.x = x * Math.cos(yaw) - z * Math.sin(yaw);
-      this.camera.position.z = z * Math.cos(yaw) + x * Math.sin(yaw);
+      let cameraYaw = .001
+      this.camera.position.x = this.camera.position.x * Math.cos(cameraYaw) - this.camera.position.z * Math.sin(cameraYaw);
+      this.camera.position.z = this.camera.position.z * Math.cos(cameraYaw) + this.camera.position.x * Math.sin(cameraYaw);
       this.camera.lookAt(this.scene.position);
+
+      let jonahYaw = -.01
+      this.jonah.position.x = this.jonah.position.x * Math.cos(jonahYaw) - this.jonah.position.z * Math.sin(jonahYaw);
+      this.jonah.position.z = this.jonah.position.z * Math.cos(jonahYaw) + this.jonah.position.x * Math.sin(jonahYaw);
+
       this.renderer.render(this.scene, this.camera);
     }
   }
