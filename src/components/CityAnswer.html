@@ -1,4 +1,4 @@
-<button class="city {isSelected ? 'selected' : ''}" on:click="$set({ answers: { ...$answers, [key]: this.innerText }})">
+<button class="city {(anySelected && !(isSelected)) ? 'not-selected' : ''}" on:click="$set({ answers: { ...$answers, [key]: this.innerText }})">
   <img src={src} alt={value} />
   <slot></slot>
 </button>
@@ -7,7 +7,8 @@
   export default {
     computed: {
       src: ({ value }) => `img/city_${value.replace(' ', '_').toLowerCase()}.png`,
-      isSelected: ({ $answers, key, value }) => $answers[key] == value
+      isSelected: ({ $answers, key, value }) => $answers[key] == value,
+      anySelected: ({ $answers, key, value }) => $answers[key] != null
     }
   }
 
@@ -25,12 +26,14 @@
   }
   .city img {
     width: 100%;
-    opacity: 0.6;
+    opacity: 1;
   }
   .answer:last-of-type {
     margin-right: 0;
   }
-  .selected img {
-    opacity: 1;
+  .not-selected img {
+    opacity: 0.6;
   }
+
+
 </style>
