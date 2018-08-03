@@ -36,8 +36,8 @@
 
   function createMap(places, element) {
     let map = new google.maps.Map(element, {
-      zoom: 10,
-      center: formatLatLong(places[0].latlong),
+      zoom: 13,
+      center: averagePosition(places),
       styles
     });
 
@@ -57,7 +57,7 @@
           });
         } else if (place.bf_url) {
           infowindow = new google.maps.InfoWindow({
-            content: '<a href="'+place.bf_url+'" target="_blank"><img src="'+place.thumbnail_url+'"><p>'+place.title+'</p></a><h3>'+place.name+', '+place.city+'</h3>'
+            content: '<a href="'+place.bf_url+'" target="_blank"><img src="'+place.thumbnail_url+'" width=400px><p>'+place.title+'</p></a><h3>'+place.name+', '+place.city+'</h3>'
           });
         }
         else {
