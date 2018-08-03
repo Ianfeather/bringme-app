@@ -2,7 +2,7 @@ import App from './App.html';
 import { questions } from './data/questions.js';
 import { Store } from 'svelte/store.js';
 
-const url = 'https://gist.githubusercontent.com/ben-graves/5b8fe403b6a07239cb1dab2faacdf9a7/raw/30812a69dd0ab04cb6cc5e0386081885e99423ca/bringme.json';
+const url = 'https://gist.githubusercontent.com/ben-graves/5b8fe403b6a07239cb1dab2faacdf9a7/raw/1418a6bfdffa187a0967d7692f7379d7cf7fad02/bringme.json';
 
 const viewStates = {
     QUESTIONS: 0,

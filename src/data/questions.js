@@ -31,7 +31,7 @@ export const questions = [
     key: "city",
     answers: [
       "Los Angeles",
-      "New York",
+      "NYC",
       "London"
     ]
   },
