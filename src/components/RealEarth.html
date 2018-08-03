@@ -4,6 +4,8 @@
   .realEarth {
     height: 600px;
     width: 100%;
+    background: url('/bringme-app/public/img/space.jpg') no-repeat 0% 50%;
+    background-size: 100%;
   }
 </style>
 
@@ -19,8 +21,8 @@
       this.camera.position.y = 2;
       this.camera.lookAt(this.scene.position);
 
-      this.renderer = new THREE.WebGLRenderer({ canvas: elem })
-      this.renderer.setClearColor (0xf27075, 1);
+      this.renderer = new THREE.WebGLRenderer({ canvas: elem, alpha: true })
+      this.renderer.setClearColor(0x000000, 0);
 
       let ambientLight = new THREE.AmbientLight(0x444444);
       this.scene.add(ambientLight);
@@ -29,7 +31,7 @@
       this.scene.add(light);
 
       this.realEarth = new THREE.Mesh(
-        new THREE.CylinderGeometry( 1.5, 1.5, .2, 32 ),
+        new THREE.CylinderGeometry( 1.5, 1.5, .2, 64 ),
         new THREE.MeshPhongMaterial({
           map: new THREE.TextureLoader().load('img/real-earth.jpg'),
           bumpMap: new THREE.TextureLoader().load('img/real-earth.jpg'),
@@ -41,6 +43,28 @@
       this.scene.add(this.realEarth);
       this.realEarth.rotateY(3.1);
 
+      this.sun = new THREE.Mesh(
+        new THREE.SphereGeometry(.1, 16, 16),
+        new THREE.MeshPhongMaterial({
+          map: new THREE.TextureLoader().load('img/sun2k.jpg'),
+          bumpMap: new THREE.TextureLoader().load('img/sun2k.jpg'),
+          bumpScale: 0.05,
+          lightMap: new THREE.TextureLoader().load('img/sun2k.jpg'),
+          lightMapIntensity: 1,
+        })
+      );
+      this.sun.position.x = 2.5;
+      this.sun.position.y = 1.;
+      this.scene.add(this.sun);
+
+      let daoMap = new THREE.TextureLoader().load('img/dao.png');
+      let daoMat = new THREE.SpriteMaterial({ map: daoMap, color: 0xffffff });
+      this.dao = new THREE.Sprite(daoMat);
+      this.dao.position.x = -2;
+      this.dao.position.y = 0.5;
+      this.dao.scale.set(0.4, 0.4, 0.4);
+      this.scene.add(this.dao);
+
       // comment this out for fake markers
       const markers = [[34.3205484, -118.4822827], [40.7128, -74.0060], [51.5074, 0.1278]];
       markers.forEach(marker => {
@@ -51,7 +75,6 @@
         let y = 0.1;
         x = x * 0.2;
         z = z * 0.2;
-        console.log(x, y, x);
         let spriteMap = new THREE.TextureLoader().load('img/pin.png');
         let spriteMaterial = new THREE.SpriteMaterial({ map: spriteMap, color: 0xffffff });
         this.sprite = new THREE.Sprite(spriteMaterial);
@@ -73,13 +96,21 @@
 
     animate() {
       requestAnimationFrame(() => this.animate());
-      let yaw = .001
-      let x = this.camera.position.x,
-          y = this.camera.position.y,
-          z = this.camera.position.z;
-      this.camera.position.x = x * Math.cos(yaw) - z * Math.sin(yaw);
-      this.camera.position.z = z * Math.cos(yaw) + x * Math.sin(yaw);
+
+      let cameraYaw = .001
+      this.camera.position.x = this.camera.position.x * Math.cos(cameraYaw) - this.camera.position.z * Math.sin(cameraYaw);
+      this.camera.position.z = this.camera.position.z * Math.cos(cameraYaw) + this.camera.position.x * Math.sin(cameraYaw);
       this.camera.lookAt(this.scene.position);
+
+      let sunYaw = -.005
+      this.sun.position.x = this.sun.position.x * Math.cos(sunYaw) - this.sun.position.z * Math.sin(sunYaw);
+      this.sun.position.z = this.sun.position.z * Math.cos(sunYaw) + this.sun.position.x * Math.sin(sunYaw);
+      this.sun.rotateY(0.01);
+
+      let daoYaw = -.01
+      this.dao.position.x = this.dao.position.x * Math.cos(daoYaw) - this.dao.position.z * Math.sin(daoYaw);
+      this.dao.position.z = this.dao.position.z * Math.cos(daoYaw) + this.dao.position.x * Math.sin(daoYaw);
+
       this.renderer.render(this.scene, this.camera);
     }
   }

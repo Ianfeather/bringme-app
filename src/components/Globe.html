@@ -4,6 +4,8 @@
   .globe {
     height: 600px;
     width: 100%;
+    background: url('/public/img/bm-back.png') no-repeat 0% 50%;
+    background-size: 100%;
   }
 </style>
 
@@ -18,8 +20,8 @@
       this.camera.position.z = 3;
       this.camera.position.y = 1;
 
-      this.renderer = new THREE.WebGLRenderer({ canvas: elem })
-      this.renderer.setClearColor (0xfcd007, 1);
+      this.renderer = new THREE.WebGLRenderer({ canvas: elem, alpha: true })
+      this.renderer.setClearColor(0x000000, 0);
 
       let ambientLight = new THREE.AmbientLight(0x888888);
       this.scene.add(ambientLight);
