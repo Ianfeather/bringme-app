@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'FatFrank';
+  src: url('fonts/fatfrank-free-webfont.woff2') format('woff2'),
+       url('fonts/fatfrank-free-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   position: relative;
   width: 100%;

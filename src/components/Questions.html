@@ -1,10 +1,10 @@
 <div class='main-questions'>
-  {#each questions as question}
+  {#each questions as question, index}
     <Question>
       <h2>{question.text}</h2>
       <div class="answers">
         {#each question.answers as answer}
-          <Answer key={question.key} value={answer}>{answer}</Answer>
+          <Answer index={index} key={question.key} value={answer}>{answer}</Answer>
         {/each}
       </div>
     </Question>
