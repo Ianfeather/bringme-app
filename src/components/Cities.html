@@ -1,7 +1,6 @@
 <div class='main-cities'>
   {#each cities as city}
     <Question>
-      <h2>{city.text}</h2>
       <div class="answers">
         {#each city.answers as answer}
           <CityAnswer key={city.key} value={answer}>{answer}</CityAnswer>
@@ -16,12 +15,8 @@
     width: 1150px;
     margin: 0 auto;
   }
-
   .answers {
     display: flex;
-  }
-  h2 {
-    font-weight: normal;
   }
 </style>
 

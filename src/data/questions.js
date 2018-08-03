@@ -27,7 +27,6 @@ export const questions = [
     ]
   },
   {
-    text: "You got —",
     key: "city",
     answers: [
       "Los Angeles",

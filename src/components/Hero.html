@@ -1,12 +1,41 @@
-<div class="hero">
-  <img src={src} alt="hero" />
+<div class="hero" style="background-image: url({src})">
+  <div class="content">
+    {#if $viewState == 0}
+      <h1 class="upper">Discover a new destination</h1>
+    {/if}
+
+    {#if $viewState == 1}
+      <Back style="text"/>
+      <h1 class="upper">You Got —</h1>
+    {/if}
+
+    {#if cityPage}
+      <Back style="text"/>
+      <h1>{$answers.city}</h1>
+      <p>{cityInfo}</p>
+    {/if}
+  </div>
 </div>
 
 <script>
+  import { cities } from '../data/cities.js'
+  import Back from './Back.html';
   export default {
     computed: {
-      src: ({ $viewState }) => `img/hero_${$viewState}.png`
-    }
+      src: ({ $viewState, $answers }) => {
+        if ($viewState == 2) {
+          return `img/${$answers.city.split(" ").join('-').toLowerCase()}.jpg`
+        }
+        return `img/hero_${$viewState}.jpg`
+      },
+      cityPage: ({ $viewState }) => $viewState == 2,
+      cityInfo: ({ $answers }) => {
+        if (!$answers.city) { return ''}
+        return cities[$answers.city.toLowerCase()]
+      }
+    },
+    components: { Back }
+
   }
 
 </script>
@@ -15,9 +44,29 @@
 .hero {
   width: 100%;
   margin-top: -160px;
-  min-height: 160px;
+  margin-bottom: 20px;
+  position: relative;
+  height: 700px;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
 }
-.hero img {
-  width: 100%;
+.content {
+  width: 1150px;
+  margin: 0 auto;
+  color: white;
+  margin-bottom: 100px;
+}
+h1 {
+  font-weight: bold;
+  font-size: 120px;
+  text-transform: none;
+}
+p {
+  font-size: 18px;
+  width: 80%;
+}
+.upper {
+  text-transform: uppercase;
 }
 </style>

@@ -1,12 +1,15 @@
 <div class='back-container'>
-  <button class="back" on:click="$set({ viewState: $viewState - 1 })">
-    Back
+  <button class="back back-text" on:click="$set({ viewState: $viewState - 1 })">
+    Select again
   </button>
 </div>
 
+<script>
+</script>
+
 <style>
   .back {
-    margin-right: 1em;
+    margin: 0;
     padding: 1em;
     flex: 1;
     background: #91e1c8;
@@ -14,7 +17,15 @@
     border-radius: 4px;
     cursor: pointer;
     border: none;
-    margin: 10px;
+  }
+  .back-text {
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    padding: 0;
+  }
+  .back-text:before {
+    content: '< '
   }
   .back-container {
     width: 1150px;

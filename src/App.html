@@ -5,17 +5,14 @@
   <Forward />
 {/if}
 {#if $viewState == $viewStates.CITY_SELECT}
-  <Back />
   <Cities cities={citiesToShow} />
   <Forward />
 {/if}
 {#if $viewState == $viewStates.RESULTS}
-  <Back />
   <Results items={matchedItems} answers={answers} />
 {/if}
 
 <script>
-  import Back from './components/Back.html';
   import Cities from './components/Cities.html';
   import Forward from './components/Forward.html';
   import Questions from './components/Questions.html';
@@ -41,6 +38,6 @@
           .filter((poi) => poi["hobbies/interests"].toLowerCase() === $answers["hobbies/interests"].toLowerCase());
       }
     },
-    components: { Cities, Questions, Results, Forward, Back, Hero }
+    components: { Cities, Questions, Results, Forward, Hero }
   };
 </script>
